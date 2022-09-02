@@ -8,8 +8,8 @@ import {
   IconButton
 } from "@chakra-ui/react";
 import { SunDim, MoonStars } from "phosphor-react";
-import { IconSize, PageHeaderI } from "./";
-import { Colors } from "../../styles";
+import { ICON_SIZE as iconSize, PageHeaderI } from "./";
+import { COLORS as colors } from "../../styles";
 
 export const PageHeader = ({ numberTasks = 0, title }: PageHeaderI) => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -36,9 +36,9 @@ export const PageHeader = ({ numberTasks = 0, title }: PageHeaderI) => {
           bg="transparent"
         >
           {colorMode === "light" ? (
-            <SunDim size={IconSize} color={Colors.blue} />
+            <SunDim size={iconSize} color={colors.blue} />
           ) : (
-            <MoonStars size={IconSize} color={Colors.yellow} />
+            <MoonStars size={iconSize} color={colors.yellow} />
           )}
         </IconButton>
       </Flex>

@@ -1,6 +1,6 @@
 import { BadgeTypesI } from "./TodoCard.interface";
 
-export const BadgeTypes: BadgeTypesI = {
+export const BADGE_TYPES: BadgeTypesI = {
   bug: {
     label: "Bug Fix",
     colorScheme: "brand.pink"
@@ -15,4 +15,4 @@ export const BadgeTypes: BadgeTypesI = {
   }
 };
 
-export const IconSize = 20;
+export const ICON_SIZE = 20;

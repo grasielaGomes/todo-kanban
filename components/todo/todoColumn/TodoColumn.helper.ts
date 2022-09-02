@@ -1,6 +1,6 @@
 import { CardsI } from ".";
 
-export const Cards: CardsI = {
+export const CARDS: CardsI = {
   todo: [
     {
       createAt: "Sept 2th 2022",

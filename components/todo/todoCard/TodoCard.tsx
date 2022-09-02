@@ -8,8 +8,12 @@ import {
   useColorModeValue
 } from "@chakra-ui/react";
 import { Clock, CaretLeft, CaretRight, Trash } from "phosphor-react";
-import { TodoCardI, BadgeTypes, IconSize } from "./";
-import { Colors } from "../../../styles";
+import {
+  TodoCardI,
+  BADGE_TYPES as badgeTypes,
+  ICON_SIZE as iconSize
+} from "./";
+import { COLORS as colors } from "../../../styles";
 
 export const TodoCard = ({
   createAt,
@@ -17,20 +21,15 @@ export const TodoCard = ({
   taskType = "discovery",
   status = "todo"
 }: TodoCardI) => {
-  const { label, colorScheme } = BadgeTypes[taskType];
+  const { label, colorScheme } = badgeTypes[taskType];
   const bg = useColorModeValue("white", "dark.900");
   return (
     <Box px="2">
-      <Box
-        borderRadius="2xl"
-        overflow="hidden"
-        bg={bg}
-        shadow="card"
-      >
+      <Box borderRadius="2xl" overflow="hidden" bg={bg} shadow="card">
         <Stack spacing="4" px="4" pt="4" pb="2">
           <Flex align="center" gap="2">
-            <Clock size="16" color={Colors.gray} weight="bold" />
-            <Text color={Colors.gray} fontSize="xs" fontWeight="bold">
+            <Clock size="16" color={colors.gray} weight="bold" />
+            <Text color={colors.gray} fontSize="xs" fontWeight="bold">
               {createAt}
             </Text>
           </Flex>
@@ -54,16 +53,15 @@ export const TodoCard = ({
             _hover={{
               color: "brand.purple"
             }}
-            icon={<CaretLeft size={IconSize} weight="bold" />}
+            icon={<CaretLeft size={iconSize} weight="bold" />}
           />
           <IconButton
-            disabled={status === "done"}
             bg="transparent"
             aria-label="Change next status"
             _hover={{
               color: "brand.pink"
             }}
-            icon={<Trash size={IconSize} />}
+            icon={<Trash size={iconSize} />}
           />
           <IconButton
             disabled={status === "done"}
@@ -72,7 +70,7 @@ export const TodoCard = ({
             _hover={{
               color: "brand.purple"
             }}
-            icon={<CaretRight size={IconSize} weight="bold" />}
+            icon={<CaretRight size={iconSize} weight="bold" />}
           />
         </Flex>
       </Box>

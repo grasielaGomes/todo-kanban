@@ -1,6 +1,6 @@
 import { SimpleGrid, useColorModeValue } from "@chakra-ui/react";
-import { TodoColumn, Cards } from "../";
-import { Columns, Titles } from "./";
+import { TodoColumn, CARDS as cards } from "../";
+import { COLUMNS as columns, TITLES as titles } from "./";
 
 export const TodoContainer = () => {
   const bg = useColorModeValue("light.50", "dark.800");
@@ -12,8 +12,8 @@ export const TodoContainer = () => {
       borderRadius="2xl"
       overflow="hidden"
     >
-      {Columns.map((column) => (
-        <TodoColumn key={column} title={Titles[column]} cards={Cards[column]} />
+      {columns.map((column) => (
+        <TodoColumn key={column} title={titles[column]} cards={cards[column]} />
       ))}
     </SimpleGrid>
   );
