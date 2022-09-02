@@ -6,7 +6,7 @@ interface Props {
 }
 export const BasicTemplate: FC<Props> = ({ children }) => {
   return (
-    <Box maxW="1200px" mx="auto" p="10">
+    <Box maxW="1200px" mx="auto" p={["5","10"]}>
       {children}
     </Box>
   );
