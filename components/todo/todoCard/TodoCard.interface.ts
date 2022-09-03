@@ -1,6 +1,6 @@
 export interface TodoCardI {
   createAt: string;
-  id: string;
+  _id: string;
   task: string;
   taskType?: "discovery" | "feature" | "bug";
   status?: "todo" | "progress" | "done";

@@ -18,12 +18,12 @@ export const TodoColumn = ({ cards, title }: TodoColumnI) => {
           {title}
         </Heading>
         {cards &&
-          cards.map(({ createAt, id, task, taskType, status }) => {
+          cards.map(({ createAt, _id, task, taskType, status }) => {
             return (
               <TodoCard
-                key={id}
+                key={_id}
                 createAt={createAt}
-                id={id}
+                _id={_id}
                 task={task}
                 taskType={taskType}
                 status={status}
