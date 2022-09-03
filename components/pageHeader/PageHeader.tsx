@@ -5,15 +5,17 @@ import {
   Divider,
   Text,
   useColorMode,
+  useToken,
   IconButton
 } from "@chakra-ui/react";
 import { SunDim, MoonStars } from "phosphor-react";
 import { ICON_SIZE as iconSize, PageHeaderI } from "./";
-import { COLORS as colors } from "../../styles";
 
 export const PageHeader = ({ numberTasks = 0, title }: PageHeaderI) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const [blue, yellow] = useToken("colors", ["brand.blue", "brand.yellow"]);
   const isOneTask = Number(numberTasks) === 1;
+
   return (
     <>
       <Flex align="center" justify="space-between">
@@ -36,9 +38,9 @@ export const PageHeader = ({ numberTasks = 0, title }: PageHeaderI) => {
           bg="transparent"
         >
           {colorMode === "light" ? (
-            <SunDim size={iconSize} color={colors.blue} />
+            <SunDim size={iconSize} color={blue} />
           ) : (
-            <MoonStars size={iconSize} color={colors.yellow} />
+            <MoonStars size={iconSize} color={yellow} />
           )}
         </IconButton>
       </Flex>
