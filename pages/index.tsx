@@ -6,7 +6,7 @@ import { TodoContainer } from "../components/todo";
 
 const HomePage: NextPage = () => {
   return (
-    <BasicTemplate>
+    <BasicTemplate title="Home | Todo Kanban">
       <Stack spacing="6">
         <PageHeader numberTasks="2" title="My Board" />
         <TodoContainer />
