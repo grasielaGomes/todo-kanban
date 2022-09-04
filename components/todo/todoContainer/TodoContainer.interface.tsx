@@ -1,7 +1,5 @@
-export interface TodoContainerI {
-  columns: string[];
-}
+import { TodoCardI } from "../";
 
-export interface TitlesI {
-  [key: string]: string;
+export interface TodoContainerI {
+  tasks: TodoCardI[];
 }
