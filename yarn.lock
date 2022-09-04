@@ -1726,6 +1726,11 @@ eslint-plugin-react@^7.29.4:
     semver "^6.3.0"
     string.prototype.matchall "^4.0.7"
 
+eslint-plugin-valtio@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-valtio/-/eslint-plugin-valtio-0.6.0.tgz#64187b1fc7fc84715e2bd3efaf4d24c3fa11bede"
+  integrity sha512-scr3ktkXikn49eRk4eWErhgc45mlYL9lZE/hTpgtyhXheU0WGL2Xv2dq/sRfQi7MXv7JjpSTy2UC28jhi95q5A==
+
 eslint-scope@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-7.1.1.tgz#fff34894c2f65e5226d3041ac480b4513a163642"
@@ -2617,6 +2622,11 @@ prop-types@^15.6.2, prop-types@^15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+proxy-compare@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/proxy-compare/-/proxy-compare-2.3.0.tgz#ac9633ae52918ff9c9fcc54dfe6316c7a02d20ee"
+  integrity sha512-c3L2CcAi7f7pvlD0D7xsF+2CQIW8C3HaYx2Pfgq8eA4HAl3GAH6/dVYsyBbYF/0XJs2ziGLrzmz5fmzPm6A0pQ==
+
 punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
@@ -3018,6 +3028,14 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+valtio@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/valtio/-/valtio-1.6.4.tgz#ddab600cf58b54a76339ef1cc3e931f9fe6070ce"
+  integrity sha512-wEslN1bO1ihuv2Xj4jIxkGaDgsnwSvZdcaYcJ6aSwaNYU0ZMe+eZipfEzbTqd4CwnMu7ihDBNes0ZP5CIl1NqA==
+  dependencies:
+    proxy-compare "2.3.0"
+    use-sync-external-store "1.2.0"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
