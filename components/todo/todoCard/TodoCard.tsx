@@ -9,6 +9,8 @@ import {
   useToken
 } from "@chakra-ui/react";
 import { Clock, CaretLeft, CaretRight, Trash } from "phosphor-react";
+import { tasksStore } from "../../../stores";
+import { STATUS_COLUMNS as statusColumns } from "../../../helpers";
 import {
   TodoCardI,
   BADGE_TYPES as badgeTypes,
@@ -22,9 +24,26 @@ export const TodoCard = ({
   taskType = "discovery",
   status = "todo"
 }: TodoCardI) => {
-  const { label, colorScheme } = badgeTypes[taskType];
+  const { label, colorScheme } = badgeTypes[taskType] || "";
   const bg = useColorModeValue("white", "dark.900");
-  const [gray] = useToken( "colors", ["brand.gray"]);
+  const [gray] = useToken("colors", ["brand.gray"]);
+  const { removeTask, updateTask } = tasksStore;
+  const idx = statusColumns.indexOf(status);
+  
+  const handleDelete = () => {
+    removeTask(_id);
+  };
+
+  const handleMoveToNextStatus = () => {
+    const newStatus = statusColumns[idx + 1];
+    updateTask(_id, newStatus);
+  };
+
+  const handleMoveToPreviewStatus = () => {
+    const newStatus = statusColumns[idx - 1];
+    updateTask(_id, newStatus);
+  };
+
   return (
     <Box px="2">
       <Box borderRadius="2xl" overflow="hidden" bg={bg} shadow="card">
@@ -36,43 +55,48 @@ export const TodoCard = ({
             </Text>
           </Flex>
           <Text>{task}</Text>
-          <Badge
-            variant="solid"
-            w="fit-content"
-            bg={colorScheme}
-            py="1"
-            px="3"
-            borderRadius="full"
-          >
-            {label}
-          </Badge>
+          {label && (
+            <Badge
+              variant="solid"
+              w="fit-content"
+              bg={colorScheme}
+              py="1"
+              px="3"
+              borderRadius="full"
+            >
+              {label}
+            </Badge>
+          )}
         </Stack>
         <Flex align="center" gap="2" justify="space-between" pb="2">
           <IconButton
-            disabled={status === "todo"}
+            aria-label="Move to preview status"
             bg="transparent"
-            aria-label="Change previews status"
+            disabled={status === "todo"}
             _hover={{
               color: "brand.purple"
             }}
             icon={<CaretLeft size={iconSize} weight="bold" />}
+            onClick={handleMoveToPreviewStatus}
           />
           <IconButton
+            aria-label="Delete task"
             bg="transparent"
-            aria-label="Change next status"
             _hover={{
               color: "brand.pink"
             }}
             icon={<Trash size={iconSize} />}
+            onClick={handleDelete}
           />
           <IconButton
-            disabled={status === "done"}
+            aria-label="Move to next status"
             bg="transparent"
-            aria-label="Change next status"
+            disabled={status === "done"}
             _hover={{
               color: "brand.purple"
             }}
             icon={<CaretRight size={iconSize} weight="bold" />}
+            onClick={handleMoveToNextStatus}
           />
         </Flex>
       </Box>
