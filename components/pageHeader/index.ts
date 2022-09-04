@@ -1,3 +1,3 @@
 export * from "./PageHeader";
-export * from "./PageHeader.interface";
-export * from "./PageHeader.helper";
+export * from "./pageHeader.interface";
+export * from "./pageHeader.helper";

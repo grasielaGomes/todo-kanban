@@ -1,4 +1,4 @@
-import { BadgeTypesI } from "./TodoCard.interface";
+import { BadgeTypesI } from "./todoCard.interface";
 
 export const BADGE_TYPES: BadgeTypesI = {
   bug: {

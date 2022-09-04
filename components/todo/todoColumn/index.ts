@@ -1,3 +1,3 @@
 export * from "./TodoColumn";
-export * from "./TodoColumn.helper";
-export * from "./TodoColumn.interface";
+export * from "./todoColumn.helper";
+export * from "./todoColumn.interface";
