@@ -14,7 +14,7 @@ import { ICON_SIZE as iconSize, PageHeaderI } from "./";
 export const PageHeader = ({ numberTasks = 0, title }: PageHeaderI) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [blue, yellow] = useToken("colors", ["brand.blue", "brand.yellow"]);
-  const isOneTask = Number(numberTasks) === 1;
+  const isOneTask = Number(numberTasks) <= 1;
 
   return (
     <>
