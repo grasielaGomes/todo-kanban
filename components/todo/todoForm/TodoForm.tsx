@@ -14,8 +14,10 @@ export const TodoForm = () => {
 
   const handleTaskChange: ChangeEventHandler<HTMLTextAreaElement> = (e) =>
     (newTask.task = e.target.value);
-  const handleStatusChange = (value: string) => (newTask.status = value);
-  const handleTypeChange = (value: string) => (newTask.taskType = value);
+  const handleStatusChange = (value: string) =>
+    (newTask.status = value as "todo" | "progress" | "done");
+  const handleTypeChange = (value: string) =>
+    (newTask.taskType = value as "discovery" | "feature" | "bug");
 
   return (
     <Stack spacing="6">

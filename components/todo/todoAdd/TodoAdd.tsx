@@ -16,10 +16,10 @@ import { tasksStore } from "../../../stores";
 
 export const TodoAdd = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { addTask } = tasksStore;
+  const { addTask, newTask } = tasksStore;
 
   const handleSubmit = () => {
-    addTask();
+    if (newTask.task) addTask();
     onClose();
   };
 
