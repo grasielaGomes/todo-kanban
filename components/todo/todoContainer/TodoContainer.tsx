@@ -22,7 +22,7 @@ export const TodoContainer = ({ tasks }: TodoContainerI) => {
         {columns.map((column) => (
           <TodoColumn
             key={column}
-            title={titles[column]}
+            status={column}
             tasks={tasksByColumns(tasks, column)}
           />
         ))}
