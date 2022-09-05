@@ -6,9 +6,11 @@ import { updateTask } from "../utils/tasks";
 
 interface TasksStoreI {
   addTask: () => void;
+  isDragging: boolean;
   newTask: TodoCardI;
   tasks: TodoCardI[];
   tasksCounter: number;
+  toogleDragging: () => void;
   removeTask: (id: string) => void;
   updateTask: (id: string, status: string) => void;
 }
@@ -25,6 +27,7 @@ export const tasksStore: TasksStoreI = proxy<TasksStoreI>({
       status: "todo"
     };
   },
+  isDragging: false,
   newTask: {
     createAt: formatDate(new Date()),
     _id: uuidv4(),
@@ -34,6 +37,9 @@ export const tasksStore: TasksStoreI = proxy<TasksStoreI>({
   },
   tasks: [],
   tasksCounter: 0,
+  toogleDragging: () => {
+    tasksStore.isDragging = !tasksStore.isDragging;
+  },
   removeTask: (id: string) => {
     tasksStore.tasks = removeTask(tasksStore.tasks, id);
     tasksStore.tasksCounter--;

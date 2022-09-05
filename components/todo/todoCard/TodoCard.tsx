@@ -1,3 +1,4 @@
+import { DragEvent } from "react";
 import {
   Badge,
   Box,
@@ -8,6 +9,7 @@ import {
   useColorModeValue,
   useToken
 } from "@chakra-ui/react";
+import { useSnapshot } from "valtio";
 import { Clock, CaretLeft, CaretRight, Trash } from "phosphor-react";
 import { tasksStore } from "../../../stores";
 import { STATUS_COLUMNS as statusColumns } from "../../../helpers";
@@ -27,7 +29,8 @@ export const TodoCard = ({
   const { label, colorScheme } = badgeTypes[taskType] || "";
   const bg = useColorModeValue("white", "dark.900");
   const [gray] = useToken("colors", ["brand.gray"]);
-  const { removeTask, updateTask } = tasksStore;
+  const { isDragging, toogleDragging, removeTask, updateTask } =
+    useSnapshot(tasksStore);
   const idx = statusColumns.indexOf(status);
 
   const handleDelete = () => {
@@ -44,9 +47,22 @@ export const TodoCard = ({
     updateTask(_id, newStatus);
   };
 
+  const onDragStart = (event: DragEvent) => {
+    toogleDragging();
+    event.dataTransfer?.setData("task", _id);
+  };
+
   return (
     <Box px="2">
-      <Box borderRadius="2xl" overflow="hidden" bg={bg} shadow="card">
+      <Box
+        borderRadius="2xl"
+        overflow="hidden"
+        bg={bg}
+        shadow="card"
+        opacity={isDragging ? 0.3 : 1}
+        draggable
+        onDragStart={onDragStart}
+      >
         <Stack spacing="4" px="4" pt="4" pb="2">
           <Flex align="center" gap="2">
             <Clock size="16" color={gray} weight="bold" />
