@@ -29,7 +29,7 @@ export const TodoCard = ({
   const [gray] = useToken("colors", ["brand.gray"]);
   const { removeTask, updateTask } = tasksStore;
   const idx = statusColumns.indexOf(status);
-  
+
   const handleDelete = () => {
     removeTask(_id);
   };
@@ -54,7 +54,7 @@ export const TodoCard = ({
               {createAt}
             </Text>
           </Flex>
-          <Text>{task}</Text>
+          <Text whiteSpace="pre-line">{task}</Text>
           {label && (
             <Badge
               variant="solid"
