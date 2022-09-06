@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-import { TodoCardI } from "../components/todo";
 import { formatDate } from "./";
+import { TodoCardI } from "../components/todo";
+import { Status } from "../helpers";
 
 export const tasksByColumns = (
   tasks: TodoCardI[],
@@ -12,11 +13,17 @@ export const tasksByColumns = (
 export const updateTask = (
   tasks: TodoCardI[],
   id: string,
-  status: string
+  status: Status
 ): TodoCardI[] =>
   tasks.map((task) => ({
     ...task,
     status: task._id === id ? status : task.status
+  }));
+
+export const formatTask = (tasks: TodoCardI[]): TodoCardI[] =>
+  tasks.map((task) => ({
+    ...task,
+    createAt: formatDate(task.createAt as Date)
   }));
 
 export const removeTask = (tasks: TodoCardI[], id: string): TodoCardI[] =>
