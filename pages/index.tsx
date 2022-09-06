@@ -6,20 +6,16 @@ import { BasicTemplate } from "../components/layouts";
 import { PageHeader } from "../components/pageHeader";
 import { TodoContainer, TodoCardI } from "../components/todo";
 import { tasksStore } from "../stores";
-import tasksApi from "../apis/tasksApi";
+import { getTasksApi } from "../apis/getTasksApi";
+import { isDevelopment } from "../helpers";
 
 const HomePage: NextPage = () => {
   const { tasksCounter, tasks, refreshTasks } = useSnapshot(tasksStore);
 
   const getTasks = useCallback(async () => {
-    console.log(process.env.NODE_ENV);
-    if (process.env.NODE_ENV !== "production") {
-      try {
-        const { data } = await tasksApi.get<TodoCardI[]>("/tasks");
-        refreshTasks(data);
-      } catch (err) {
-        console.error(err);
-      }
+    if (isDevelopment) {
+      const tasksDb = await getTasksApi();
+      tasksDb && refreshTasks(tasksDb);
     }
   }, [refreshTasks]);
 

@@ -11,30 +11,23 @@ import {
   Box
 } from "@chakra-ui/react";
 import { PlusCircle } from "phosphor-react";
-import { TodoCardI, TodoForm } from "../";
+import { TodoForm } from "../";
 import { tasksStore } from "../../../stores";
-import tasksApi from "../../../apis/tasksApi";
+import { addTaskApi } from "../../../apis";
+import { isDevelopment } from "../../../helpers";
 
 export const TodoAdd = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { addTask, newTask } = tasksStore;
 
-  const addTaskDb = async (newTask: TodoCardI) => {
-    if (process.env.NODE_ENV === "development") {
-      try {
-        const { data } = await tasksApi.post("/tasks", newTask);
-        addTask(data);
-      } catch (err) {
-        console.error(err);
-      }
-    } else {
-      addTask(newTask);
-    }
-  };
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (newTask.task) {
-      addTaskDb(newTask);
+      if (isDevelopment) {
+        const task = await addTaskApi(newTask);
+        addTask(task);
+      } else {
+        addTask(newTask);
+      }
     }
     onClose();
   };
