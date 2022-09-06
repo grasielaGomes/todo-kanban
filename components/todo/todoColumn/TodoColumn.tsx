@@ -1,10 +1,10 @@
 import { DragEvent } from "react";
-import { Box, Stack, useColorModeValue, Heading } from "@chakra-ui/react";
 import { useSnapshot } from "valtio";
+import { Box, Stack, useColorModeValue, Heading } from "@chakra-ui/react";
+import { TodoColumnI } from "./";
+import { TodoCard } from "../";
 import { tasksStore } from "../../../stores/tasksStore";
 import { STATUS_TITLES as titles } from "../../../helpers";
-import { TodoCard } from "../";
-import { TodoColumnI } from "./";
 
 export const TodoColumn = ({ tasks, status }: TodoColumnI) => {
   const backgroundColor = useColorModeValue("light.100", "dark.700");
