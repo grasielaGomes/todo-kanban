@@ -4,7 +4,8 @@ import { Box, Stack, useColorModeValue, Heading } from "@chakra-ui/react";
 import { TodoColumnI } from "./";
 import { TodoCard } from "../";
 import { tasksStore } from "../../../stores/tasksStore";
-import { STATUS_TITLES as titles } from "../../../helpers";
+import { STATUS_TITLES as titles, isDevelopment } from "../../../helpers";
+import { updateTaskApi } from "../../../apis";
 
 export const TodoColumn = ({ tasks, status }: TodoColumnI) => {
   const backgroundColor = useColorModeValue("light.100", "dark.700");
@@ -17,6 +18,7 @@ export const TodoColumn = ({ tasks, status }: TodoColumnI) => {
     const task = event.dataTransfer.getData("task");
     updateTask(task, status);
     toogleDragging();
+    isDevelopment && updateTaskApi(task, status);
   };
   return (
     <Box
