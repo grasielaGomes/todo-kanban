@@ -4,7 +4,10 @@ import { Box, Stack, useColorModeValue, Heading } from "@chakra-ui/react";
 import { TodoColumnI } from "./";
 import { TodoCard } from "../";
 import { tasksStore } from "../../../stores/tasksStore";
-import { STATUS_TITLES as titles, isDevelopment } from "../../../helpers";
+import {
+  STATUS_TITLES as titles,
+  IS_DEVELOPMENT as isDevelopment
+} from "../../../helpers";
 import { updateTaskApi } from "../../../apis";
 
 export const TodoColumn = ({ tasks, status }: TodoColumnI) => {

@@ -14,7 +14,7 @@ import { PlusCircle } from "phosphor-react";
 import { TodoForm } from "../";
 import { tasksStore } from "../../../stores";
 import { addTaskApi } from "../../../apis";
-import { isDevelopment } from "../../../helpers";
+import { IS_DEVELOPMENT as isDevelopment } from "../../../helpers";
 
 export const TodoAdd = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

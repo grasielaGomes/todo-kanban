@@ -7,7 +7,7 @@ import { PageHeader } from "../components/pageHeader";
 import { TodoContainer, TodoCardI } from "../components/todo";
 import { tasksStore } from "../stores";
 import { getTasksApi } from "../apis/getTasksApi";
-import { isDevelopment } from "../helpers";
+import { IS_DEVELOPMENT as isDevelopment } from "../helpers";
 
 const HomePage: NextPage = () => {
   const { tasksCounter, tasks, refreshTasks } = useSnapshot(tasksStore);

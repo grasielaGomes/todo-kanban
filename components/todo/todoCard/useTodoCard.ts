@@ -5,7 +5,7 @@ import { BADGE_TYPES as badgeTypes } from "./";
 import { tasksStore } from "../../../stores";
 import {
   STATUS_COLUMNS as statusColumns,
-  isDevelopment,
+  IS_DEVELOPMENT as isDevelopment,
   Status
 } from "../../../helpers";
 import { updateTaskApi, deleteTaskApi } from "../../../apis";
