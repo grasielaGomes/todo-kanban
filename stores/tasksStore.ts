@@ -1,23 +1,19 @@
 import { proxy } from "valtio";
 import { v4 as uuidv4 } from "uuid";
+import { TasksStoreI } from "./";
+import {
+  removeTask,
+  addTask,
+  formatDate,
+  updateTask,
+  formatTask
+} from "../utils";
 import { TodoCardI } from "../components/todo";
-import { removeTask, addTask, formatDate } from "../utils";
-import { updateTask } from "../utils/tasks";
-
-interface TasksStoreI {
-  addTask: () => void;
-  isDragging: boolean;
-  newTask: TodoCardI;
-  tasks: TodoCardI[];
-  tasksCounter: number;
-  toogleDragging: () => void;
-  removeTask: (id: string) => void;
-  updateTask: (id: string, status: string) => void;
-}
+import { Status } from "../helpers";
 
 export const tasksStore: TasksStoreI = proxy<TasksStoreI>({
-  addTask: () => {
-    tasksStore.tasks = addTask(tasksStore.tasks, tasksStore.newTask);
+  addTask: (newTaskDb: TodoCardI) => {
+    tasksStore.tasks = addTask(tasksStore.tasks, newTaskDb);
     tasksStore.tasksCounter++;
     tasksStore.newTask = {
       createAt: formatDate(new Date()),
@@ -40,11 +36,15 @@ export const tasksStore: TasksStoreI = proxy<TasksStoreI>({
   toogleDragging: () => {
     tasksStore.isDragging = !tasksStore.isDragging;
   },
+  refreshTasks: (tasks: TodoCardI[]) => {
+    tasksStore.tasks = formatTask(tasks);
+    tasksStore.tasksCounter = tasks.length;
+  },
   removeTask: (id: string) => {
     tasksStore.tasks = removeTask(tasksStore.tasks, id);
     tasksStore.tasksCounter--;
   },
-  updateTask: (id: string, status: string) => {
+  updateTask: (id: string, status: Status) => {
     tasksStore.tasks = updateTask(tasksStore.tasks, id, status);
   }
 });
