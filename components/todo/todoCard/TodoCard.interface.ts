@@ -1,9 +1,11 @@
+import { Status, Types } from "../../../helpers";
+
 export interface TodoCardI {
-  createAt: string;
+  createAt: string | Date;
   _id: string;
   task: string;
-  taskType: "discovery" | "feature" | "bug";
-  status: "todo" | "progress" | "done";
+  taskType: Types;
+  status: Status;
 }
 
 export interface BadgeTypesI {

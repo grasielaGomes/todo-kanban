@@ -5,7 +5,9 @@ import {
   STATUS_COLUMNS as statusList,
   STATUS_TITLES as statusTitles,
   TYPES as types,
-  TYPES_TITLES as typesTitles
+  TYPES_TITLES as typesTitles,
+  Status,
+  Types
 } from "../../../helpers";
 import { tasksStore } from "../../../stores";
 
@@ -15,9 +17,9 @@ export const TodoForm = () => {
   const handleTaskChange: ChangeEventHandler<HTMLTextAreaElement> = (e) =>
     (newTask.task = e.target.value);
   const handleStatusChange = (value: string) =>
-    (newTask.status = value as "todo" | "progress" | "done");
+    (newTask.status = value as Status);
   const handleTypeChange = (value: string) =>
-    (newTask.taskType = value as "discovery" | "feature" | "bug");
+    (newTask.taskType = value as Types);
 
   return (
     <Stack spacing="6">

@@ -1,14 +1,11 @@
 import { SimpleGrid, useColorModeValue } from "@chakra-ui/react";
 import { TodoColumn, TodoAdd, TodoContainerI } from "../";
-import {
-  STATUS_COLUMNS as columns,
-  STATUS_TITLES as titles
-} from "../../../helpers";
+import { STATUS_COLUMNS as columns, Status } from "../../../helpers";
 import { tasksByColumns } from "../../../utils";
 
 export const TodoContainer = ({ tasks }: TodoContainerI) => {
   const bg = useColorModeValue("light.50", "dark.800");
- 
+
   return (
     <>
       <TodoAdd />
@@ -22,7 +19,7 @@ export const TodoContainer = ({ tasks }: TodoContainerI) => {
         {columns.map((column) => (
           <TodoColumn
             key={column}
-            status={column}
+            status={column as Status}
             tasks={tasksByColumns(tasks, column)}
           />
         ))}

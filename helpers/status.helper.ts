@@ -5,3 +5,5 @@ export const STATUS_TITLES: { [key: string]: string } = {
   progress: "In Progress",
   done: "Done"
 };
+
+export type Status = "todo" | "progress" | "done";

@@ -5,3 +5,5 @@ export const TYPES_TITLES: { [key: string]: string } = {
   feature: "New Feature",
   bug: "Bug Fix"
 };
+
+export type Types = "discovery" | "feature" | "bug";
