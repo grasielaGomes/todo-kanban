@@ -12,11 +12,13 @@ const HomePage: NextPage = () => {
   const { tasksCounter, tasks, refreshTasks } = useSnapshot(tasksStore);
 
   const getTasks = useCallback(async () => {
-    try {
-      const { data } = await tasksApi.get<TodoCardI[]>("/tasks");
-      refreshTasks(data);
-    } catch (err) {
-      console.error(err);
+    if (process.env.NODE_ENV === "development") {
+      try {
+        const { data } = await tasksApi.get<TodoCardI[]>("/tasks");
+        refreshTasks(data);
+      } catch (err) {
+        console.error(err);
+      }
     }
   }, [refreshTasks]);
 

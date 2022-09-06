@@ -20,10 +20,14 @@ export const TodoAdd = () => {
   const { addTask, newTask } = tasksStore;
 
   const addTaskDb = async (newTask: TodoCardI) => {
-    try {
-      const { data } = await tasksApi.post("/tasks", newTask);
-      addTask(data);
-    } catch (err) {
+    if (process.env.NODE_ENV === "development") {
+      try {
+        const { data } = await tasksApi.post("/tasks", newTask);
+        addTask(data);
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
       addTask(newTask);
     }
   };
