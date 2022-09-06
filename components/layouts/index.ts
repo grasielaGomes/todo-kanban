@@ -1,2 +1,2 @@
 export * from "./BasicTemplate";
-export * from "./basicTemplate.interface";
+export { type BasicTemplateI } from "./basicTemplate.interface";
