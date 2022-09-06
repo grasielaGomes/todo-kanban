@@ -1,2 +1,2 @@
 export * from "./TodoContainer";
-export * from "./todoContainer.interface";
+export * from "./TodoContainer.interface";
