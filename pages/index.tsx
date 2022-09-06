@@ -12,7 +12,8 @@ const HomePage: NextPage = () => {
   const { tasksCounter, tasks, refreshTasks } = useSnapshot(tasksStore);
 
   const getTasks = useCallback(async () => {
-    if (process.env.NODE_ENV === "development") {
+    console.log(process.env.NODE_ENV);
+    if (process.env.NODE_ENV !== "production") {
       try {
         const { data } = await tasksApi.get<TodoCardI[]>("/tasks");
         refreshTasks(data);
