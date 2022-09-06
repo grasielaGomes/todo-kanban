@@ -24,7 +24,7 @@ export const TodoAdd = () => {
       const { data } = await tasksApi.post("/tasks", newTask);
       addTask(data);
     } catch (err) {
-      console.error(err);
+      addTask(newTask);
     }
   };
 
