@@ -1,23 +1,8 @@
-import { DragEvent } from "react";
-import {
-  Badge,
-  Box,
-  Flex,
-  IconButton,
-  Stack,
-  Text,
-  useColorModeValue,
-  useToken
-} from "@chakra-ui/react";
 import { useSnapshot } from "valtio";
+import { Badge, Box, Flex, IconButton, Stack, Text } from "@chakra-ui/react";
 import { Clock, CaretLeft, CaretRight, Trash } from "phosphor-react";
+import { TodoCardI, ICON_SIZE as iconSize, useTodoCard } from "./";
 import { tasksStore } from "../../../stores";
-import { STATUS_COLUMNS as statusColumns } from "../../../helpers";
-import {
-  TodoCardI,
-  BADGE_TYPES as badgeTypes,
-  ICON_SIZE as iconSize
-} from "./";
 
 export const TodoCard = ({
   createAt,
@@ -26,31 +11,17 @@ export const TodoCard = ({
   taskType = "discovery",
   status = "todo"
 }: TodoCardI) => {
-  const { label, colorScheme } = badgeTypes[taskType] || "";
-  const bg = useColorModeValue("white", "dark.900");
-  const [gray] = useToken("colors", ["brand.gray"]);
-  const { isDragging, toogleDragging, removeTask, updateTask } =
-    useSnapshot(tasksStore);
-  const idx = statusColumns.indexOf(status);
-
-  const handleDelete = () => {
-    removeTask(_id);
-  };
-
-  const handleMoveToNextStatus = () => {
-    const newStatus = statusColumns[idx + 1];
-    updateTask(_id, newStatus);
-  };
-
-  const handleMoveToPreviewStatus = () => {
-    const newStatus = statusColumns[idx - 1];
-    updateTask(_id, newStatus);
-  };
-
-  const onDragStart = (event: DragEvent) => {
-    toogleDragging();
-    event.dataTransfer?.setData("task", _id);
-  };
+  const { isDragging } = useSnapshot(tasksStore);
+  const {
+    bg,
+    colorScheme,
+    gray,
+    handleDelete,
+    handleMoveToNextStatus,
+    handleMoveToPreviewStatus,
+    label,
+    onDragStart
+  } = useTodoCard(_id, taskType, status);
 
   return (
     <Box px="2">
@@ -67,7 +38,7 @@ export const TodoCard = ({
           <Flex align="center" gap="2">
             <Clock size="16" color={gray} weight="bold" />
             <Text color={gray} fontSize="xs" fontWeight="bold">
-              {createAt}
+              {createAt as string}
             </Text>
           </Flex>
           <Text whiteSpace="pre-line">{task}</Text>
