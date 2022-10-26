@@ -5,7 +5,7 @@ import { BasicTemplateI } from "./";
 
 export const BasicTemplate: FC<BasicTemplateI> = ({
   children,
-  title = "Home"
+  title = "Home",
 }) => {
   return (
     <Box maxW="1200px" mx="auto" p={["5", "10"]}>
