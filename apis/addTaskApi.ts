@@ -1,11 +1,16 @@
-import { tasksApi } from "./";
 import { TodoCardI } from "../components/todo";
+import { AxiosAdapter } from "../http";
+import { TaskError } from "../errors";
 
 export const addTaskApi = async (newTask: TodoCardI) => {
+  const httpPostClient = new AxiosAdapter();
   try {
-    const { data } = await tasksApi.post("/tasks", newTask);
-    return data;
-  } catch (err) {
-    console.error(err);
+    const { body } = await httpPostClient.post({
+      url: "api/tasks",
+      body: newTask
+    });
+    return body;
+  } catch (error) {
+    throw new TaskError("Task not added.");
   }
 };
