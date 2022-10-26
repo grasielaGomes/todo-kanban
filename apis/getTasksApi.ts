@@ -1,11 +1,12 @@
-import { TodoCardI } from "../components/todo";
-import tasksApi from "./tasksApi";
+import { TaskError } from "../errors";
+import { AxiosAdapter } from "../http";
 
 export const getTasksApi = async () => {
+  const httpGetClient = new AxiosAdapter();
   try {
-    const { data } = await tasksApi.get<TodoCardI[]>("/tasks");
-    return data;
-  } catch (err) {
-    console.error(err);
+    const { body } = await httpGetClient.get({url: "api/tasks"});
+    return body;
+  } catch (_) {
+    throw new TaskError("Get tasks failed.");
   }
 };

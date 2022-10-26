@@ -1,10 +1,13 @@
-import { tasksApi } from ".";
+import { TaskError } from "../errors";
 import { Status } from "../helpers";
+import { AxiosAdapter } from "../http";
 
 export const updateTaskApi = async (_id: string, status: Status) => {
+  const httpPutClient = new AxiosAdapter();
   try {
-    await tasksApi.put(`/tasks/${_id}`, { status });
+    await httpPutClient.put({ url: `api/tasks/${_id}`, body: { status } });
   } catch (err) {
-    console.error(err);
+    console.log(err)
+   throw new TaskError("Update task failed.");
   }
 };
