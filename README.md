@@ -21,10 +21,13 @@ https://todo-kanban-five.vercel.app
 
 **Config env variables**
 
-    Rename __.env.example__ to __.env__
+Rename  __.env.example__  to  __.env__
+
+
 
 **Seed data base**
-
-    Call http://localhost:3000/api/seed
+````
+http://localhost:3000/api/seed
+````
 
 
