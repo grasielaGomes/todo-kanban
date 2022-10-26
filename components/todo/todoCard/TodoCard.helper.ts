@@ -15,4 +15,4 @@ export const BADGE_TYPES: BadgeTypesI = {
   }
 };
 
-export const ICON_SIZE = 20;
+export const ARROW_ICON_SIZE = 20;

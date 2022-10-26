@@ -1,7 +1,7 @@
 import { useSnapshot } from "valtio";
 import { Badge, Box, Flex, IconButton, Stack, Text } from "@chakra-ui/react";
 import { Clock, CaretLeft, CaretRight, Trash } from "phosphor-react";
-import { TodoCardI, ICON_SIZE as iconSize, useTodoCard } from "./";
+import { TodoCardI, ARROW_ICON_SIZE as iconSize, useTodoCard } from "./";
 import { tasksStore } from "../../../stores";
 
 export const TodoCard = ({
