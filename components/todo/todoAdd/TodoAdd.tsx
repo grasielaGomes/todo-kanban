@@ -23,8 +23,8 @@ export const TodoAdd = () => {
   const handleSubmit = async () => {
     if (newTask.task) {
       if (isDevelopment) {
-        const task = await addTaskApi(newTask);
-        addTask(task);
+        const { data } = await addTaskApi(newTask);
+        addTask(data);
       } else {
         addTask(newTask);
       }
