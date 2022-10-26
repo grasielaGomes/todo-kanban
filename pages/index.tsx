@@ -2,11 +2,14 @@ import { useCallback, useEffect } from "react";
 import type { NextPage } from "next";
 import { useSnapshot } from "valtio";
 import { Stack } from "@chakra-ui/react";
-import { BasicTemplate } from "../components/layouts";
-import { PageHeader } from "../components/pageHeader";
-import { TodoContainer, TodoCardI } from "../components/todo";
+import {
+  BasicTemplate,
+  PageHeader,
+  TodoContainer,
+  TodoCardI
+} from "../components";
 import { tasksStore } from "../stores";
-import { getTasksApi } from "../apis/getTasksApi";
+import { getTasksApi } from "../apis";
 import { IS_DEVELOPMENT as isDevelopment } from "../helpers";
 
 const HomePage: NextPage = () => {
@@ -14,8 +17,8 @@ const HomePage: NextPage = () => {
 
   const getTasks = useCallback(async () => {
     if (isDevelopment) {
-      const tasksDb = await getTasksApi();
-      tasksDb && refreshTasks(tasksDb);
+      const { data } = await getTasksApi();
+      data && refreshTasks(data);
     }
   }, [refreshTasks]);
 
@@ -24,7 +27,7 @@ const HomePage: NextPage = () => {
   }, [getTasks]);
 
   return (
-    <BasicTemplate title="Home | Todo Kanban">
+    <BasicTemplate title="Todo Kanban">
       <Stack spacing="6">
         <PageHeader numberTasks={tasksCounter} title="My Board" />
         <TodoContainer tasks={tasks as TodoCardI[]} />
